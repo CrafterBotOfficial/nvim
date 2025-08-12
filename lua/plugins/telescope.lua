@@ -15,7 +15,12 @@ return {
                         "--smart-case",
                         "--hidden",
                     },
-                    file_ignore_patterns = { "%.git/.*", }
+                    file_ignore_patterns = { 
+                        "%.git/.*", 
+                        -- for dotnet development
+                        "%bin/.*",
+                        "%obj/.*", 
+                    }
                 },
             })
         end,

@@ -24,10 +24,14 @@ return {
             lspconfig.qmlls.setup {
                 cmd = { 'qmlls', '-I', '/lib/qt6/qml' },
             }
+            lspconfig.omnisharp.setup {
+                cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+                cmd_env = { GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/" },
+            }
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {}) -- shows help
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {}) 
-            vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
+            vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {})  -- shows error under indicator
         end
     },
 }
