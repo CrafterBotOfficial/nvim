@@ -26,12 +26,21 @@ return {
             }
             lspconfig.omnisharp.setup {
                 cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-                cmd_env = { GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/" },
             }
+            vim.env.GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/"
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {}) -- shows help
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {}) 
+            -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {}) -- must be removed for c# development
             vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {})  -- shows error under indicator
+        end
+    },
+
+    -- For c# view definition
+    -- https://github.com/Hoffs/omnisharp-extended-lsp.nvim?tab=readme-ov-file#omnisharp-settings
+    {
+        "Hoffs/omnisharp-extended-lsp.nvim",
+        config = function()
+            vim.keymap.set("n", "gd", require("omnisharp_extended").telescope_lsp_definition, { noremap = true })
         end
     },
 }
