@@ -1,3 +1,5 @@
+vim.keymap.set("x", "p", '"_dP', { noremap = true })
+
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false })
 
 vim.api.nvim_set_keymap("n", "<leader>u", ":UndotreeToggle<CR>", { noremap = true, silent = true }) -- Undo tree
