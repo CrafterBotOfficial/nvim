@@ -18,12 +18,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup({
-  { "folke/tokyonight.nvim" }, -- theme
   { import = "plugins" }
 })
 
-require("bindings")
-require("style")
+require("keymaps")
 
 vim.opt.clipboard = "unnamedplus"
 
