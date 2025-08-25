@@ -30,6 +30,8 @@ return {
             dashboard.button("SPC f f", "󰈞  Find file"),
             dashboard.button("SPC f g", "󰈬  Find word"),
             dashboard.button("SPC l l", "  Lazy"),
+
+            -- todo: impliment
             dashboard.button("SPC s l", "  Open last session"),
             dashboard.button("SPC f m", "  Jump to bookmarks"),
             dashboard.button("SPC f r", "  Frecency/MRU"),

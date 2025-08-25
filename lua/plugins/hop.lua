@@ -1,6 +1,6 @@
 return { 
     "phaazon/hop.nvim",
-    config = function() 
-        require("hop").setup()
+    config = function () 
+        require("hop").setup {}
     end,
 }
