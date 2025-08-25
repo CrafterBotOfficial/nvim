@@ -1,23 +1,23 @@
 return {
     {
         "williamboman/mason.nvim",
-        config = function() 
+        config = function () 
             require("mason").setup {}
         end,
     },
     
     {
         "williamboman/mason-lspconfig.nvim",
-        config = function() 
-            require("mason-lspconfig").setup({
+        config = function () 
+            require("mason-lspconfig").setup {
                 ensure_installed = { "lua_ls", "qmlls", "omnisharp" }
-            })
+            }
         end,
     },
 
     {
         "neovim/nvim-lspconfig",
-        config = function() 
+        config = function () 
             local lspconfig = require("lspconfig")
 
             lspconfig.lua_ls.setup {}
@@ -39,8 +39,18 @@ return {
     -- https://github.com/Hoffs/omnisharp-extended-lsp.nvim?tab=readme-ov-file#omnisharp-settings
     {
         "Hoffs/omnisharp-extended-lsp.nvim",
-        config = function()
-            vim.keymap.set("n", "gd", require("omnisharp_extended").telescope_lsp_definition, { noremap = true })
+        config = function ()
+            function isOmnisharpLsp()
+                local buffer = vim.api.nvim_get_current_buf()
+                local clients = vim.lsp.get_clients({ bufnr = buffer })
+                for _, client in ipairs(clients) do
+                    local name = client.name
+                    if name == "omnisharp" then
+                        return true
+                    end
+                end
+                return false
+            end
         end
     },
 }
