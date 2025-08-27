@@ -6,7 +6,6 @@ return {
         local harpoon = require('harpoon')
         harpoon.setup {}
         
-        -- https://github.com/ThePrimeagen/harpoon/tree/harpoon2?tab=readme-ov-file#basic-setup
         vim.keymap.set("n", "<C-a>", function() harpoon:list():add() end)
         vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end) -- note: remove entry with dd & :w
 
@@ -14,6 +13,11 @@ return {
         vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
         vim.keymap.set("n", "<C-c>", function() harpoon:list():select(3) end)
         vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+
+        vim.keymap.set("n", "<C-S-h>", function() harpoon:list():replace_at(1) end)
+        vim.keymap.set("n", "<C-S-t>", function() harpoon:list():replace_at(2) end)
+        vim.keymap.set("n", "<C-S-c>", function() harpoon:list():replace_at(3) end)
+        vim.keymap.set("n", "<C-S-s>", function() harpoon:list():replace_at(4) end)
 
         -- Toggle previous & next buffers stored within Harpoon list
         vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
