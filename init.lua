@@ -1,8 +1,9 @@
 require "lazy-bootstrap"
 
-require("lazy").setup({
-  { import = "plugins" }
-})
+require("lazy").setup {
+    { import = "plugins" },
+    { import = "plugins/lsp" },
+}
 
 require "keymaps"
 require "nvim-settings"
