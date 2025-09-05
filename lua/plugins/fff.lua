@@ -1,9 +1,15 @@
 return {
     "dmtrKovalenko/fff.nvim",
     build = 'cargo build --release',
+    commit = "a9b2f5b",
     config = function ()
         require("fff").setup {
-            max_threads = 8,
+            max_threads = 12,
+            debug = {
+                enabled = false,
+                show_scores = false,
+            },
+            prompt = " >  ",
         }
 
         -- nvim --headless --cmd "let g:fff_autoscan=1"
