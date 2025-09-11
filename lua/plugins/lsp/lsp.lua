@@ -33,15 +33,10 @@ return {
             }
             vim.env.GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/"
 
-            vim.lsp.config("roslyn", {
-                settings = {
-                    ["csharp|background_analysis"] = {
-                        dotnet_analyzer_diagnostics_scope = "none",
-                        -- Keep compiler diagnostics if desired (e.g., errors like syntax issues)
-                        dotnet_compiler_diagnostics_scope = "fullSolution",  -- or "openFiles" / "none"
-                    },
-                },
-            })        
+            -- go to definition
+            vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, { noremap = true })
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, {}) -- shows help
+            vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {})  -- shows error under indicator
         end
     },
 }
