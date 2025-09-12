@@ -1,7 +1,6 @@
 return {
     {
         "seblyng/roslyn.nvim",
-        opts = {},
         config = function ()
             vim.lsp.config("roslyn", {
                 settings = {
@@ -16,10 +15,10 @@ return {
     },
 
     -- https://github.com/khoido2003/roslyn-filewatch.nvim
-    {
-	    "khoido2003/roslyn-filewatch.nvim",
-		config = function()
-			require("roslyn_filewatch").setup {}
-		end,
-	},
+	--    {
+	--     "khoido2003/roslyn-filewatch.nvim",
+	-- 	config = function()
+	-- 		require("roslyn_filewatch").setup {}
+	-- 	end,
+	-- },
 }
