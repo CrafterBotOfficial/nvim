@@ -13,6 +13,7 @@ return {
         require("presence").setup {
             blacklist = blacklistedFolders,
             neovim_image_text = "bruh dont look at me",
+            show_time = false,
         }
     end
 }

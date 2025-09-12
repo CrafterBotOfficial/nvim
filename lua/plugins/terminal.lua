@@ -22,9 +22,9 @@ return {
                 _G.set_terminal_keymaps()
             end,
         })
+
         require("toggleterm").setup {
             -- open_mapping = [[<leader>ft]],
-            open_mapping = [[<leader>t]],
             direction = "float",
             float_opts = {
                 border = "curved",
@@ -32,5 +32,7 @@ return {
                 height = function(_) return math.floor(vim.o.lines * 0.9) end,
             },
         }
+
+        vim.api.nvim_set_keymap("n", "<leader>t", ":ToggleTerm<CR>", { noremap = true, silent = true })
     end,
 }

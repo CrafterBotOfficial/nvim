@@ -7,3 +7,5 @@ require("lazy").setup {
 
 require "keymaps"
 require "nvim-settings"
+
+require "overrides"
