@@ -32,7 +32,5 @@ return {
                 height = function(_) return math.floor(vim.o.lines * 0.9) end,
             },
         }
-
-        vim.api.nvim_set_keymap("n", "<leader>t", ":ToggleTerm<CR>", { noremap = true, silent = true })
     end,
 }
