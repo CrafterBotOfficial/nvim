@@ -11,3 +11,6 @@ vim.opt.tabstop = 4
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false
+
+-- prevents coping on paste
+vim.keymap.set("x", "p", '"_dP', { noremap = true })
