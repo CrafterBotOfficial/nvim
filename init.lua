@@ -1,6 +1,6 @@
 require "lazy-bootstrap"
 
-require("lazy").setup {
+require "lazy" .setup {
     { import = "plugins" },
     { import = "plugins/lsp" },
 }
