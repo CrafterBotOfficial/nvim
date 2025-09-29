@@ -2,12 +2,11 @@
 return {
     "andweeb/presence.nvim",
     config = function ()
-        local home = os.getenv('HOME')
+        -- local home = os.getenv('HOME')
         local blacklistedFolders = {
-            -- "dotfiles/"
             ".local/",
-            home .. "/.config/",
             ".cache/",
+            "/Projects/Secret/",
         }
 
         require("presence").setup {

@@ -13,7 +13,7 @@ return {
 
     {
         "williamboman/mason-lspconfig.nvim",
-        config = function () 
+        config = function ()
             require("mason-lspconfig").setup {
                 ensure_installed = { "lua_ls", "qmlls" },
             }
@@ -22,10 +22,17 @@ return {
 
     {
         "neovim/nvim-lspconfig",
-        config = function () 
+        config = function ()
             local lspconfig = require("lspconfig")
 
-            lspconfig.lua_ls.setup {}
+            lspconfig.lua_ls.setup {
+                diagnostics = {
+                    globals = { "vim" },
+                },
+            }
+            require("neodev").setup {
+                lspconfig = true,
+            }
             lspconfig.qmlls.setup {
                 cmd = { 'qmlls', '-I', '/lib/qt6/qml' },
                 filetypes = { "qml" },
