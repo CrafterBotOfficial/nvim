@@ -1,7 +1,7 @@
 return {
     {
         "williamboman/mason.nvim",
-        config = function () 
+        config = function ()
             require("mason").setup {
                 registries = {
                     "github:mason-org/mason-registry",
@@ -29,9 +29,6 @@ return {
                 diagnostics = {
                     globals = { "vim" },
                 },
-            }
-            require("neodev").setup {
-                lspconfig = true,
             }
             lspconfig.qmlls.setup {
                 cmd = { 'qmlls', '-I', '/lib/qt6/qml' },
