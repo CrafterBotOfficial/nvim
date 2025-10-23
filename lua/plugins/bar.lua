@@ -3,6 +3,8 @@ return {
     config = function()
         require("lualine").setup {
             options = {
+                -- theme = "codedark" -- VS theme
+                -- theme = "onedark",
                 theme = "tokyonight-night",
             }
         }

@@ -1,7 +1,7 @@
 return {
     "dmtrKovalenko/fff.nvim",
     build = 'cargo build --release',
-    -- commit = "a9b2f5b",
+    commit = "550a90", -- "a9b2f5b",
     config = function ()
         require("fff").setup {
             max_threads = 12,

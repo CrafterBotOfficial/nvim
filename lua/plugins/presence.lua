@@ -1,18 +1,14 @@
--- https://github.com/andweeb/presence.nvim
 return {
-    "andweeb/presence.nvim",
+    "https://codeberg.org/Crafterbot/discord.nvim",
+    build = 'make',
     config = function ()
-        -- local home = os.getenv('HOME')
         local blacklistedFolders = {
             ".local/",
             ".cache/",
             "/Projects/Secret/",
         }
-
-        require("presence").setup {
-            blacklist = blacklistedFolders,
-            neovim_image_text = "bruh dont look at me",
-            show_time = false,
+        require "discord" .setup {
+            secret_paths = blacklistedFolders
         }
     end
 }
