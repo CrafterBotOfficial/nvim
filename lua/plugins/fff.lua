@@ -5,10 +5,8 @@ return {
     end,
     config = function ()
         require("fff").setup {
-            max_threads = 16,
-            debug = {
-                enabled = false,
-                show_scores = false,
+            preview = {
+                chunk_size = 4096,
             },
             prompt = " >  ",
         }
