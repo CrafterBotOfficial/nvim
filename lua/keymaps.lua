@@ -21,11 +21,12 @@ map_mode("i", "jj", "<Esc>")
 -- Navigation
 -- ----------
 
--- fff
+-- Fuzzy Finding
 map("<C-n>", ":NvimTreeToggle<CR>")
-map("<leader>ff", function() require('fff').find_files() end) -- vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", { noremap = true, silent = true })
+map("<leader>ff", function() require('fff').find_files() end)
 map("<leader>fs", function() require('fff').scan_files() end)
 map("<leader>fg", ":Telescope live_grep<CR>")
+map("<leader>fp", ":Telescope projects<CR>")
 
 -- Harpoon
 local harpoon = require "harpoon"
