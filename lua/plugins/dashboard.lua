@@ -26,6 +26,7 @@ return {
         -- dashboard.section.footer.opt.Position = "button"
 
         dashboard.section.buttons.val = { -- original https://github.com/goolord/alpha-nvim/blob/main/lua/alpha/themes/dashboard.lua#L77
+            dashboard.button("SPC f p", "  Find projects"),
             dashboard.button("e", "  New file", "<cmd>ene <CR>"),
             dashboard.button("SPC f f", "󰈞  Find file"),
             dashboard.button("SPC f g", "󰈬  Find word"),
@@ -33,7 +34,6 @@ return {
 
             -- todo: impliment
             dashboard.button("SPC s l", "  Open last session"),
-            dashboard.button("SPC f m", "  Jump to bookmarks"),
             dashboard.button("SPC f r", "  Frecency/MRU"),
         }
 
