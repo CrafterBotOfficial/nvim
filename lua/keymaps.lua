@@ -1,16 +1,4 @@
-local function map_mode(mode, key, command)
-    vim.api.nvim_set_keymap(mode, key, command, { noremap = true, silent = true })
-end
-
-local function map(key, command)
-    if type(command) == "string" then
-        vim.api.nvim_set_keymap("n", key, command, { noremap = true, silent = true })
-    else
-        vim.keymap.set('n', key, command)
-    end
-end
-
-
+require "utils"
 -- ----------
 -- Mode 
 -- ----------
@@ -23,10 +11,10 @@ map_mode("i", "jj", "<Esc>")
 
 -- Fuzzy Finding
 map("<C-n>", ":NvimTreeToggle<CR>")
-map("<leader>ff", function() require('fff').find_files() end)
-map("<leader>fs", function() require('fff').scan_files() end)
-map("<leader>fg", ":Telescope live_grep<CR>")
-map("<leader>fp", ":Telescope projects<CR>")
+map("<leader>ff", ":FFFSnacks <CR>") -- now done in fff.lua
+map("<leader>FF", function () require"fff".find_files_in_dir"/"  end) -- now done in fff.lua
+map("<leader>fs", function() require"fff".scan_files() end)
+map("<leader>fg", function () require"snacks".picker.grep() end)
 
 -- Harpoon
 local harpoon = require "harpoon"
