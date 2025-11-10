@@ -1,4 +1,11 @@
 return {
+    -- dir = vim.fn.expand("~/Projects/snooze-cursor.nvim"),
+    -- config = function ()
+    --     require "snooze" .setup ({
+    --         snooze_time = 2,
+    --     })
+    -- end
+
     -- dir = vim.fn.expand("~/Projects/discord.nvim"),
     -- config = function ()
     --     require("discord").setup {

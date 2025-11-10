@@ -1,5 +1,5 @@
 return {
-    "https://codeberg.org/Crafterbot/discord.nvim",
+    "https://git.crafterbot.com/archive/discord.nvim",
     build = 'make',
     config = function ()
         local blacklistedFolders = {

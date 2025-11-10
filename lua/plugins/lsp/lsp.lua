@@ -16,7 +16,9 @@ return {
             }
 
             require("mason-lspconfig").setup {
+                auto_install = true,
                 ensure_installed = {
+                    "html", "htmx",
                     "lua_ls",
                     "qmlls",
                     -- "html-lsp",
@@ -31,7 +33,7 @@ return {
         config = function ()
             local lspconfig = require "lspconfig"
 
-            -- lspconfig.gopls.setup {}
+            lspconfig.htmx.setup {}
             lspconfig.lua_ls.setup {
                 diagnostics = {
                     globals = { "vim" },
