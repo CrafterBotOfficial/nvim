@@ -26,10 +26,10 @@ return {
                 cmd = cmd,
                 handlers = require("rzls.roslyn_handlers"),
                 settings = {
-                    ["csharp|background_analysis"] = {
-                        dotnet_analyzer_diagnostics_scope = "none",
-                        dotnet_compiler_diagnostics_scope = "fullSolution",
-                    },
+                    -- ["csharp|background_analysis"] = {
+                    --     dotnet_analyzer_diagnostics_scope = "none",
+                    --     dotnet_compiler_diagnostics_scope = "fullSolution",
+                    -- },
                 },
             })
 

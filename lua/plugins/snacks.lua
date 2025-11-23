@@ -1,7 +1,7 @@
 return {
     "folke/snacks.nvim",
     opts = function(_, _)
-        local layouts = require("snacks.picker.config.layouts")
+        local layouts = require "snacks.picker.config.layouts"
         return {
             picker = {
                 layout = layouts.telescope,

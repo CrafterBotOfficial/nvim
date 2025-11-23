@@ -11,8 +11,13 @@ return {
                     chunk_size = 4096,
                 },
                 prompt = " >  ",
+                keys = {
+                    move_up = { "<Up>", "<C-k>" },
+                    move_down = { "<Down>", "<C-j>" },
+                }
             }
 
+            -- TODO: Check if this still works, doesnt seem to
             -- nvim --headless --cmd "let g:fff_autoscan=1"
             -- auto scan files on computer startup
             if vim.g.fff_autoscan == 1 then
