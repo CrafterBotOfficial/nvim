@@ -6,6 +6,6 @@ function map(key, command)
     if type(command) == "string" then
         vim.api.nvim_set_keymap("n", key, command, { noremap = true, silent = true })
     else
-        vim.keymap.set('n', key, command)
+        vim.keymap.set("n", key, command)
     end
 end

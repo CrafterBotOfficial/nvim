@@ -40,7 +40,7 @@ return {
                 },
             }
             lspconfig.qmlls.setup {
-                cmd = { 'qmlls', '-I', '/lib/qt6/qml' },
+                cmd = { "qmlls", "-I", "/lib/qt6/qml" },
                 filetypes = { "qml" },
                 root_dir = lspconfig.util.root_pattern(".git", ".qmlls.json"),
             }
@@ -48,8 +48,8 @@ return {
             vim.env.MUCK_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Muck/"
 
             vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, { noremap = true }) -- go to definition
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, {}) -- shows help
-            vim.keymap.set('n', 'gl', vim.diagnostic.open_float, {})  -- shows error under indicator
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- shows help
+            vim.keymap.set("n", "gl", vim.diagnostic.open_float, {})  -- shows error under indicator
         end
     },
 }

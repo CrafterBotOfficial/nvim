@@ -15,7 +15,7 @@ return {
         -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-installation
         config = function ()
             require("noice").setup({
-                view = 'split',
+                view = "split",
                 lsp = {
                     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                     progress = {

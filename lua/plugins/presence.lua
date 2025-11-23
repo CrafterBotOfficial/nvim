@@ -1,14 +1,11 @@
 return {
-    "https://git.crafterbot.com/archive/discord.nvim",
-    build = 'make',
+    dir = "https://git.crafterbot.com/Crafterbot/discord.nvim",
+    build = "make",
     config = function ()
         local blacklistedFolders = {
-            ".local/",
             ".cache/",
             "/Projects/Secret/",
         }
-        require "discord" .setup {
-            secret_paths = blacklistedFolders
-        }
+        require "discord" .setup { secret_paths = blacklistedFolders }
     end
 }
