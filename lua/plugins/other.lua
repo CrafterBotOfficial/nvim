@@ -1,12 +1,5 @@
 return {
     {
-        "karb94/neoscroll.nvim",
-        config = function ()
-            require "neoscroll" .setup {}
-        end,
-    },
-
-    {
         "folke/noice.nvim",
         dependencies = {
             "MunifTanjim/nui.nvim",

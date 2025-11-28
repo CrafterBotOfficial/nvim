@@ -18,7 +18,7 @@ return {
             require("mason-lspconfig").setup {
                 auto_install = true,
                 ensure_installed = {
-                    "html", "htmx",
+                    "html", -- "htmx",
                     "lua_ls",
                     "qmlls",
                     -- "html-lsp",
