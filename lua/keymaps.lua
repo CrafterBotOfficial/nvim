@@ -9,6 +9,11 @@ map_mode("i", "jj", "<Esc>")
 -- Navigation
 -- ----------
 
+-- Scroll
+map("<C-d>", "<C-d>zz")
+map("<C-f>", "<C-d>zz")
+map("<C-u>", "<C-u>zz")
+
 -- Fuzzy Finding
 map("<C-n>", ":NvimTreeToggle<CR>")
 map("<leader>ff", ":FFFSnacks <CR>") -- now done in fff.lua
