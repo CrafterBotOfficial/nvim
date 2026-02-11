@@ -33,6 +33,36 @@ return {
         config = function ()
             local lspconfig = require "lspconfig"
 
+            -- This took forever to find -_-
+            -- https://github.com/arduino/arduino-language-server/issues/206#issuecomment-2953245760
+            vim.lsp.config("arduino_language_server", {
+                capabilities = {
+                    textDocument = {
+                        semanticTokens = vim.NIL,
+                    },
+                    workspace = {
+                        semanticTokens = vim.NIL,
+                    },
+                },
+
+                cmd = {
+                    "arduino-language-server",
+                    "-cli-config",
+                    "/home/crafterbot/.arduino15/arduino-cli.yaml",
+                    "-fqbn",
+                    "esp32:esp32:esp32",
+                    "-cli",
+                    "arduino-cli",
+                    "-clangd",
+                    "clangd",
+                },
+
+                filetypes = { "arduino" },
+
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fn.expand "%:p:h")
+                end,
+            })
             lspconfig.htmx.setup {}
             lspconfig.lua_ls.setup {
                 diagnostics = {

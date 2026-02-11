@@ -5,7 +5,7 @@ return {
         local blacklistedFolders = {
             -- "dotfiles/"
             ".local/",
-            home .. "/.config/",
+            -- home .. "/.config/",
             ".cache/",
         }
         require("presence").setup {
