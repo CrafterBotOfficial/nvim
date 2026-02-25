@@ -5,6 +5,7 @@ return {
         local blacklistedFolders = {
             -- "dotfiles/"
             ".local/",
+            "Projects/Secret/",
             -- home .. "/.config/",
             ".cache/",
         }

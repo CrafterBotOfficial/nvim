@@ -1,17 +1,4 @@
 return {
-    -- Visual Studios theme (not vscode)
-    {
-        -- "tomasiser/vim-code-dark",
-        -- config = function ()
-        --     vim.cmd.colorscheme "codedark"
-        --
-        --     local tokyo_colors = require "tokyonight.colors" .setup ()
-        --     vim.cmd("hi Floaterm guibg=" .. tokyo_colors.bg)
-        --     vim.g.terminal_color_7 = "#FFFFFF"
-        --     vim.g.terminal_color_15 = "#FFFFFF"
-        -- end,
-    },
-
     {
         -- "catppuccin/nvim",
         -- name = "catppuccin",
