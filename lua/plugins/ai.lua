@@ -20,11 +20,13 @@ if not is_running() then
 end
 
 return {
+    -- for auto completions
     {
         'milanglacier/minuet-ai.nvim',
         config = function()
             require('minuet').setup {
                 n_completions = 1, -- test, only generate 1 completion
+
                 virtualtext = {
                     auto_trigger_ft = { "*" },
                     disabled_auto_trigger_ft = { "NvimTree", "TelescopePrompt" },
@@ -33,9 +35,9 @@ return {
                         -- accept = '<C-y>',
                         accept_line = '<C-j>',
                         -- accept_n_lines = '<A-z>',
-                        prev = '<C-[',
-                        next = '<C-]>',
-                        dismiss = '<A-e>',
+                        -- prev = '<C-[>', -- breaks esc
+                        -- next = '<C-]>',
+                        -- dismiss = '<A-e>',
                     },
                 },
 

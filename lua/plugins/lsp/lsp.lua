@@ -80,6 +80,7 @@ return {
             vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, { noremap = true }) -- go to definition
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- shows help
             vim.keymap.set("n", "gl", vim.diagnostic.open_float, {})  -- shows error under indicator
+            vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = vim.api.nvim_get_current_buf() })
         end
     },
 }

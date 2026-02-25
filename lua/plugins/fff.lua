@@ -1,6 +1,7 @@
 return {
     {
         "dmtrKovalenko/fff.nvim",
+        lazy = false,
         build = function()
             require("fff.download").download_or_build_binary()
         end,
@@ -37,7 +38,6 @@ return {
             "dmtrKovalenko/fff.nvim",
             "folke/snacks.nvim",
         },
-        cmd = "FFFSnacks",
-        config = true,
+        lazy = false,
     },
 }
