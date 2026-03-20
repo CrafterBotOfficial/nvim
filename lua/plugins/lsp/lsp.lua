@@ -18,12 +18,16 @@ return {
             require("mason-lspconfig").setup {
                 auto_install = true,
                 ensure_installed = {
-                    "html", -- "htmx",
+                    "html", "emmet_language_server",
+                    -- "htmx",
                     "lua_ls",
                     "qmlls",
-                    -- "html-lsp",
                     -- "rzls", -- c# .razor support
                 },
+                automatic_enable = {
+                    exclude = { "luau_lsp" },
+                },
+
             }
         end,
     },
@@ -63,11 +67,20 @@ return {
                     on_dir(vim.fn.expand "%:p:h")
                 end,
             })
-            lspconfig.htmx.setup {}
+
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require('blink.cmp').get_lsp_capabilities({
+                textDocument = { completion = { completionItem = { snippetSupport = true } } },
+            })
+            lspconfig.html.setup { capabilities = capabilities }
+            -- lspconfig.htmx.setup { capabilities = capabilities, autostart = false, }
+            lspconfig.emmet_language_server.setup { capabilities = capabilities, }
+
             lspconfig.lua_ls.setup {
                 diagnostics = {
                     globals = { "vim" },
                 },
+                filetypes = { "lua" },
             }
             lspconfig.qmlls.setup {
                 cmd = { "qmlls", "-I", "/lib/qt6/qml" },
@@ -80,7 +93,12 @@ return {
             vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, { noremap = true }) -- go to definition
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- shows help
             vim.keymap.set("n", "gl", vim.diagnostic.open_float, {})  -- shows error under indicator
-            vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = vim.api.nvim_get_current_buf() })
-        end
+            vim.keymap.set("n", "ga", vim.lsp.buf.code_action, {
+                buffer = bufnr,
+                desc = "LSP: Code action",
+                noremap = true,
+                silent = true,
+            })
+        end,
     },
 }
