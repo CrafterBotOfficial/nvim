@@ -8,6 +8,7 @@ return {
 
         config = function ()
             require("fff").setup {
+                lazy_sync = false,
                 preview = {
                     chunk_size = 4096,
                 },
@@ -17,18 +18,6 @@ return {
                     move_down = { "<Down>", "<C-j>" },
                 }
             }
-
-            -- TODO: Check if this still works, doesnt seem to
-            -- nvim --headless --cmd "let g:fff_autoscan=1"
-            -- auto scan files on computer startup
-            if vim.g.fff_autoscan == 1 then
-                print "Auto scanning files with fff.nvim"
-                require "fff" .scan_files()
-
-                vim.defer_fn(function()
-                    vim.cmd("qa")
-                end, 10000)
-            end
         end,
     },
 
