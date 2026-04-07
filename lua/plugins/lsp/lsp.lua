@@ -35,8 +35,6 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function ()
-            local lspconfig = require "lspconfig"
-
             -- This took forever to find -_-
             -- https://github.com/arduino/arduino-language-server/issues/206#issuecomment-2953245760
             vim.lsp.config("arduino_language_server", {
@@ -63,7 +61,7 @@ return {
 
                 filetypes = { "arduino" },
 
-                root_dir = function(bufnr, on_dir)
+                root_dir = function(_, on_dir)
                     on_dir(vim.fn.expand "%:p:h")
                 end,
             })
@@ -72,21 +70,21 @@ return {
             capabilities = require('blink.cmp').get_lsp_capabilities({
                 textDocument = { completion = { completionItem = { snippetSupport = true } } },
             })
-            lspconfig.html.setup { capabilities = capabilities }
+            vim.lsp.config("html", { capabilities = capabilities })
             -- lspconfig.htmx.setup { capabilities = capabilities, autostart = false, }
-            lspconfig.emmet_language_server.setup { capabilities = capabilities, }
+            vim.lsp.config("emmet_language_server", { capabilities = capabilities, })
 
-            lspconfig.lua_ls.setup {
+            vim.lsp.config("lua_ls", {
                 diagnostics = {
                     globals = { "vim" },
                 },
                 filetypes = { "lua" },
-            }
-            lspconfig.qmlls.setup {
+            })
+            vim.lsp.config("qmlls", {
                 cmd = { "qmlls", "-I", "/lib/qt6/qml" },
                 filetypes = { "qml" },
-                root_dir = lspconfig.util.root_pattern(".git", ".qmlls.json"),
-            }
+                root_dir = require"lspconfig".util.root_pattern(".git", ".qmlls.json"),
+            })
             vim.env.GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/"
             vim.env.MUCK_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Muck/"
 
