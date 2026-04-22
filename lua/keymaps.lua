@@ -16,8 +16,8 @@ map_mode("i", "jj", "<Esc>")
 
 -- Fuzzy Finding
 map("<C-n>", ":NvimTreeToggle<CR>")
-map("<leader>ff", function () require"fff-snacks".find_files()  end) -- now done in fff.lua
-map("<leader>FF", function () require"fff".find_files_in_dir"/"  end) -- now done in fff.lua
+map("<leader>ff", function () require"fff-snacks".find_files()  end)
+map("<leader>FF", function () require"fff".find_files_in_dir"/"  end)
 map("<leader>fs", function() require"fff".scan_files() end)
 map("<leader>fg", function () require("fff-snacks").live_grep({ grep_mode = { "fuzzy", }, }) end)
 map("<leader>fz", function () require("fff-snacks").live_grep({ grep_mode = { "regex",  }, }) end)
