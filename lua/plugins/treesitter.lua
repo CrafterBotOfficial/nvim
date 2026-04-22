@@ -1,25 +1,8 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    branch = "main",
+    build = ":TSUpdate",
     config = function ()
-        require("nvim-treesitter.configs").setup {
-            auto_install = true,
-            ensure_installed = { "javascript", "qmljs" },
-            highlight = {
-                enable = true,
-                disable = { "xml" },
-            },
-            indent = {
-                enable = true,
-                disable = { "xml" },
-            },
-        }
+        -- require("nvim-treesitter").install { "javascript", "qmljs" }
     end,
-    -- "nvim-treesitter/nvim-treesitter",
-    -- branch = "main",
-    -- build = ":TSUpdate",
-    -- config = function ()
-    --     local treesitter = require "nvim-treesitter"
-    --     -- treesitter.install({"javascript", "qmljs"})
-    -- end,
 }

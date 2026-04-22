@@ -52,7 +52,7 @@ return {
                     "-cli-config",
                     "/home/crafterbot/.arduino15/arduino-cli.yaml",
                     "-fqbn",
-                    "esp32:esp32:esp32",
+                    "arduino:avr:leonardo",
                     "-cli",
                     "arduino-cli",
                     "-clangd",
