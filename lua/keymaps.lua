@@ -38,7 +38,6 @@ map_harpoon("s", 4)
 
 -- Hop
 map("<leader>h", ":HopWord<CR>")
-map("<leader>ll", ":Lazy<CR>")
 
 -- ----------
 -- Terminal 
