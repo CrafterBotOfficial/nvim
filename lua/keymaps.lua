@@ -15,12 +15,30 @@ map_mode("i", "jj", "<Esc>")
 -- map("<C-u>", "<C-u>zz")
 
 -- Fuzzy Finding
+local function in_git_folder()
+    local cwd = vim.fn.getcwd()
+    local sep = package.config:sub(1,1)
+    return vim.fn.isdirectory(cwd .. sep .. ".git") == 1
+end
+
+local snacks = require 'snacks'
 map("<C-n>", ":NvimTreeToggle<CR>")
-map("<leader>ff", function () require"fff-snacks".find_files()  end)
-map("<leader>FF", function () require"fff".find_files_in_dir"/"  end)
-map("<leader>fs", function() require"fff".scan_files() end)
-map("<leader>fg", function () require("fff-snacks").live_grep({ grep_mode = { "fuzzy", }, }) end)
-map("<leader>fz", function () require("fff-snacks").live_grep({ grep_mode = { "regex",  }, }) end)
+map("<leader>ff", function ()
+    if in_git_folder() then
+        require"fff-snacks".find_files()
+    else
+        snacks.picker.files()
+    end
+end)
+map("<leader>fg", function ()
+    if in_git_folder() then
+        require("fff-snacks").live_grep({
+            grep_mode = { "fuzzy", },
+        })
+    else
+        snacks.picker.grep()
+    end
+end)
 
 -- Harpoon
 local harpoon = require "harpoon"

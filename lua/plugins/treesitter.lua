@@ -1,8 +1,14 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function ()
-        -- require("nvim-treesitter").install { "javascript", "qmljs" }
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "go",
+            callback = function()
+                vim.treesitter.start()
+            end,
+        })
     end,
 }
