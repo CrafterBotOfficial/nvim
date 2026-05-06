@@ -1,9 +1,8 @@
 return {
     {
-        "https://github.com/sainnhe/gruvbox-material",
-        config = function()
-            vim.g.gruvbox_material_background = 'hard'
-            vim.cmd("colorscheme gruvbox-material")
-        end,
+        "https://github.com/bluz71/vim-moonfly-colors",
+        config = function ()
+            vim.cmd("colorscheme moonfly")
+        end
     }
 }

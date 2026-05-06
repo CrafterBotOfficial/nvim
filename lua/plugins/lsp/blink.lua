@@ -1,12 +1,13 @@
 return {
     'saghen/blink.cmp',
+    version = '1.*',
     dependencies = {
         'saghen/blink.lib',
         'rafamadriz/friendly-snippets',
     },
-    build = function()
-        require('blink.cmp').build()
-    end,
+    -- build = function()
+    --     require('blink.cmp').build():wait(60000)
+    -- end,
     opts = {
         keymap = {
             preset = 'default',
@@ -19,11 +20,9 @@ return {
             use_nvim_cmp_as_default = false,
             nerd_font_variant = 'mono'
         },
-        completion = { documentation = { auto_show = false } },
-        sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
-        },
-        fuzzy = { implementation = 'prefer_rust_with_warning' },
+        completion = { documentation = { auto_show = true } },
+        sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+        fuzzy = { implementation = 'rust' },
     },
     opts_extend = { 'sources.default' }
 }
