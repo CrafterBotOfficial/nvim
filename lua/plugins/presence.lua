@@ -1,7 +1,6 @@
 return {
     "andweeb/presence.nvim",
     config = function ()
-        local home = os.getenv('HOME')
         local blacklistedFolders = {
             -- "dotfiles/"
             ".local/",

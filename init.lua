@@ -5,5 +5,5 @@ require "lazy" .setup {
     { import = "plugins/lsp" },
 }
 
-require "keymaps"
 require "nvim-settings"
+require "keymaps"

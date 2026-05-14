@@ -19,7 +19,7 @@ return {
                 auto_install = true,
                 ensure_installed = {
                     "html", "emmet_language_server",
-                    -- "htmx",
+                    -- "htmx", -- must be installed manually with cargo
                     "lua_ls",
                     "qmlls",
                     -- "rzls", -- c# .razor support
@@ -35,6 +35,14 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function ()
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+            capabilities.textDocument.completion.completionItem = {
+                snippetSupport = true,
+                commitCharactersSupport = true,
+                documentationFormat = { "markdown", "plaintext" },
+            }
+
             -- This took forever to find -_-
             -- https://github.com/arduino/arduino-language-server/issues/206#issuecomment-2953245760
             vim.lsp.config("arduino_language_server", {
@@ -66,37 +74,83 @@ return {
                 end,
             })
 
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = require('blink.cmp').get_lsp_capabilities({
-                textDocument = { completion = { completionItem = { snippetSupport = true } } },
+            --  dotnet tool run csharp-ls
+            -- vim.lsp.config('csharp-ls', {
+            --     cmd = { "csharp-ls", "--features", "metadata-uris" },
+            --     capabilities = capabilities,
+            --     filetypes = { 'csproj', 'sln', 'cs' },
+            --         csharp = {
+            --             useMetadataUris = true,
+            --         },
+            --     settings = {
+            --         csharp = {
+            --             useMetadataUris = true,
+            --         },
+            --         experimental = {
+            --             csharp = {
+            --                 metadataUris = true,
+            --             },
+            --         },
+            --     },
+            -- })
+
+            vim.lsp.config("html", {
+                capabilities = capabilities,
+                settings = {
+                    html = {
+                        format = {
+                            templating = true
+                        }
+                    }
+                },
             })
-            vim.lsp.config("html", { capabilities = capabilities })
-            -- lspconfig.htmx.setup { capabilities = capabilities, autostart = false, }
-            vim.lsp.config("emmet_language_server", { capabilities = capabilities, })
+
+            vim.lsp.config("htmx", {
+                cmd = { "/home/crafterbot/.cargo/bin/htmx-lsp" }, -- https://github.com/ThePrimeagen/htmx-lsp/issues/61
+                capabilities = capabilities,
+            })
+
+            vim.lsp.config("emmet_language_server", {
+                capabilities = capabilities,
+            })
+
+            vim.filetype.add({
+                extension = {
+                    tmpl = "html",
+                },
+            })
 
             vim.lsp.config("lua_ls", {
-                diagnostics = {
-                    globals = { "vim" },
-                },
-                filetypes = { "lua" },
+                settings = {
+                    Lua = {
+                        runtime = {
+                            version = "Lua 5.5",           -- or LuaJIT / 5.4 depending on your setup
+                            path = {
+                                "?.lua",
+                                "?/init.lua",
+                                vim.fn.expand("~/.luarocks/share/lua/5.5/?.lua"),
+                                vim.fn.expand("~/.luarocks/share/lua/5.5/?/init.lua"),
+                                "/usr/share/lua/5.5/?.lua",
+                                "/usr/share/lua/5.5/?/init.lua",
+                                -- add more if needed
+                            },
+                        },
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                    },
+                    filetypes = { "lua" },
+                }
             })
+
             vim.lsp.config("qmlls", {
                 cmd = { "qmlls", "-I", "/lib/qt6/qml" },
                 filetypes = { "qml" },
                 root_dir = require"lspconfig".util.root_pattern(".git", ".qmlls.json"),
             })
+
             vim.env.GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/"
             vim.env.MUCK_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Muck/"
-
-            vim.keymap.set("n", "gd", function () vim.lsp.buf.definition() end, { noremap = true }) -- go to definition
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- shows help
-            vim.keymap.set("n", "gl", vim.diagnostic.open_float, {})  -- shows error under indicator
-            vim.keymap.set("n", "ga", vim.lsp.buf.code_action, {
-                buffer = bufnr,
-                desc = "LSP: Code action",
-                noremap = true,
-                silent = true,
-            })
         end,
     },
 }

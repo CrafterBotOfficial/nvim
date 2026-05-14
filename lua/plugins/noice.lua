@@ -29,5 +29,11 @@ return {
                 lsp_doc_border = false, -- add a border to hover docs and signature help
             },
         })
+
+        require("notify").setup {
+            on_open = function(win)
+                vim.api.nvim_win_set_config(win, { focusable = false })
+            end,
+        }
     end
 }
