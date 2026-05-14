@@ -9,3 +9,10 @@ function map(key, command)
         vim.keymap.set("n", key, command)
     end
 end
+
+function in_git_folder()
+    local cwd = vim.fn.getcwd()
+    local sep = package.config:sub(1,1)
+    return vim.fn.isdirectory(cwd .. sep .. ".git") == 1
+end
+

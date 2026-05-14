@@ -20,8 +20,14 @@ return {
             use_nvim_cmp_as_default = false,
             nerd_font_variant = 'mono'
         },
-        completion = { documentation = { auto_show = true } },
-        sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+        completion = { 
+            list = { selection = { preselect = true } },
+            documentation = { auto_show = true },
+        },
+        sources = {
+            default = { 'lsp', 'path', 'snippets', 'buffer' },
+            -- providers = { lsp = { timeout_ms = 500, } }
+        },
         fuzzy = { implementation = 'rust' },
     },
     opts_extend = { 'sources.default' }

@@ -1,4 +1,5 @@
 require "utils"
+
 -- ----------
 -- Mode 
 -- ----------
@@ -9,18 +10,7 @@ map_mode("i", "jj", "<Esc>")
 -- Navigation
 -- ----------
 
--- Scroll
--- map("<C-d>", "<C-d>zz")
--- map("<C-f>", "<C-d>zz")
--- map("<C-u>", "<C-u>zz")
-
 -- Fuzzy Finding
-local function in_git_folder()
-    local cwd = vim.fn.getcwd()
-    local sep = package.config:sub(1,1)
-    return vim.fn.isdirectory(cwd .. sep .. ".git") == 1
-end
-
 local snacks = require 'snacks'
 map("<C-n>", ":NvimTreeToggle<CR>")
 map("<leader>ff", function ()
@@ -64,3 +54,17 @@ map("<leader>h", ":HopWord<CR>")
 map("<leader>t", ":FloatermToggle<CR>")
 map_mode("t", "<Esc>", "<C-\\><C-n>:FloatermToggle<CR>")
 map_mode("t", "jj", "<C-\\><C-n>:FloatermToggle<CR>")
+
+----------
+-- LSP
+----------
+
+
+-- Map 'gd' to Snacks LSP definitions picker
+vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
+
+-- Other useful LSP pickers in Snacks
+map("gd", vim.lsp.buf.definition) -- go to definition
+map("K", vim.lsp.buf.hover) -- shows help
+map("gl", vim.diagnostic.open_float)  -- shows error under indicator
+map("ga", vim.lsp.buf.code_action)
