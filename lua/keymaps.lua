@@ -29,6 +29,7 @@ map("<leader>fg", function ()
         snacks.picker.grep()
     end
 end)
+map("<leader>fs", snacks.picker.lsp_workspace_symbols)
 
 -- Harpoon
 local harpoon = require "harpoon"
@@ -59,12 +60,9 @@ map_mode("t", "jj", "<C-\\><C-n>:FloatermToggle<CR>")
 -- LSP
 ----------
 
-
--- Map 'gd' to Snacks LSP definitions picker
 vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
-
--- Other useful LSP pickers in Snacks
 map("gd", vim.lsp.buf.definition) -- go to definition
 map("K", vim.lsp.buf.hover) -- shows help
 map("gl", vim.diagnostic.open_float)  -- shows error under indicator
-map("ga", vim.lsp.buf.code_action)
+map("ga", require("actions-preview").code_actions)
+vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", { desc = "Show LSP Info" })

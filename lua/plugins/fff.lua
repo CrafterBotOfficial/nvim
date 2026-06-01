@@ -1,7 +1,7 @@
 return {
     {
         "dmtrKovalenko/fff.nvim",
-        commit = "29e6480ea011351fe468fdec3ee01a4ff1d760c",
+        version = "0.8.*",
         lazy = false,
         build = function()
             require("fff.download").download_or_build_binary()
@@ -22,7 +22,7 @@ return {
     },
 
     {
-        "madmaxieee/fff-snacks.nvim",
+        "https://github.com/Yetso/fff-snacks.nvim",
         dependencies = {
             "dmtrKovalenko/fff.nvim",
             "folke/snacks.nvim",
