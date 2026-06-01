@@ -14,3 +14,6 @@ vim.opt.foldenable = false
 
 -- prevents coping on paste
 vim.keymap.set("x", "p", '"_dP"', { noremap = true })
+
+vim.opt.wrap = true
+vim.opt.linebreak = true  -- wrap at word boundaries

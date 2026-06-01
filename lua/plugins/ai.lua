@@ -30,9 +30,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "VimEnter", }, {
         if not is_running() then
             io.popen("llama-server -hf " .. model .. " --port 11434 &> /dev/null &")
             vim.api.nvim_create_autocmd("VimLeavePre", {
-                callback = function()
+                callback = vim.schedule_wrap(function()
                     io.popen("pkill llama-server") -- todo: check if any other nvim processes are using before killing
-                end
+                end)
             })
         end
     end,
@@ -56,6 +56,7 @@ return {
                 },
 
                 provider = 'openai_fim_compatible',
+                -- context_window = 1024, 
                 context_window = 512,
                 provider_options = {
                     openai_fim_compatible = {
@@ -67,16 +68,23 @@ return {
                             max_tokens = 56,
                             top_p = 0.9,
                         },
-                        template = {
-                            prompt = function(context_before_cursor, context_after_cursor, _)
-                                return '<|fim_prefix|>'
-                                    .. context_before_cursor
-                                    .. '<|fim_suffix|>'
-                                    .. context_after_cursor
-                                    .. '<|fim_middle|>'
-                            end,
-                            suffix = false,
-                        },
+                    },
+                    template = {
+                        prompt = function(context_before_cursor, context_after_cursor, filename)
+                            local file_header = (filename and filename ~= '')
+                            and ('<|file_sep|>' .. filename .. '\n')
+                            or ''
+
+                            local suffix = context_after_cursor:gsub('^%s+', '')
+
+                            return file_header
+                            .. '<|fim_prefix|>'
+                            .. context_before_cursor
+                            .. '<|fim_suffix|>'
+                            .. suffix
+                            .. '<|fim_middle|>'
+                        end,
+                        suffix = false,
                     },
                 }
             }
