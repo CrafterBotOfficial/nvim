@@ -9,10 +9,8 @@ return {
             documentationFormat = { "markdown", "plaintext" },
         }
 
-        -- vim.lsp.config("zls", {
-        --     cmd = { "/usr/bin/zls-master" }, -- yay -Sy zls-master-bin --noconfirm
-        -- })
-        -- vim.lsp.enable("zls")
+        vim.lsp.enable("roslyn_ls")
+        vim.lsp.enable("roslyn")
 
         -- This took forever to find -_-
         -- https://github.com/arduino/arduino-language-server/issues/206#issuecomment-2953245760
@@ -82,18 +80,18 @@ return {
                 tmpl = "html",
             },
         })
-
-        vim.lsp.config("csharp_ls", {
-            capabilities = capabilities,
-            cmd = function(dispatchers, config)
-                return vim.lsp.rpc.start({ 'csharp-ls', '--features', 'metadata-uris' }, dispatchers, {
-                    cwd = config.cmd_cwd or config.root_dir,
-                    env = config.cmd_env,
-                    detached = config.detached,
-                })
-            end,
-        });
-        vim.lsp.enable("csharp_ls")
+        --
+        -- vim.lsp.config("csharp_ls", {
+        --     capabilities = capabilities,
+        --     cmd = function(dispatchers, config)
+        --         return vim.lsp.rpc.start({ 'csharp-ls', '--features', 'metadata-uris' }, dispatchers, {
+        --             cwd = config.cmd_cwd or config.root_dir,
+        --             env = config.cmd_env,
+        --             detached = config.detached,
+        --         })
+        --     end,
+        -- });
+        -- vim.lsp.enable("csharp_ls")
 
         vim.lsp.config("lua_ls", {
             settings = {
@@ -112,6 +110,10 @@ return {
                     },
                     diagnostics = {
                         globals = { "vim" },
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
                     },
                 },
                 filetypes = { "lua" },
