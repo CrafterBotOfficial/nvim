@@ -1,5 +1,5 @@
 return {
-    -- dir = vim.fn.expand("~/Projects/fff-symbols.nvim"),
+    -- dir = vim.fn.expand("~/Projects/desktop-entry-maker.nvim"),
     -- dev = true,
     -- config = function ()
     -- end

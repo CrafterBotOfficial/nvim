@@ -22,7 +22,8 @@ return {
     },
 
     {
-        "https://github.com/Yetso/fff-snacks.nvim",
+        "https://github.com/madmaxieee/fff-snacks.nvim",
+        commit = "ad0cb07e06fc097910ab965f0216f1e4ae0315da", -- rollback to show entries on open instead of after type
         dependencies = {
             "dmtrKovalenko/fff.nvim",
             "folke/snacks.nvim",
