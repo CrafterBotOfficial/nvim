@@ -6,6 +6,7 @@ return {
             ".local/",
             "Projects/Secret/",
             -- home .. "/.config/",
+            "Games/",
             ".cache/",
         }
         require("presence").setup {

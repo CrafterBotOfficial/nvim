@@ -64,6 +64,7 @@ return {
             cmd = { "/home/crafterbot/.cargo/bin/htmx-lsp" }, -- https://github.com/ThePrimeagen/htmx-lsp/issues/61
             capabilities = capabilities,
         })
+        vim.lsp.enable("htmx")
 
         vim.lsp.config("emmet_language_server", {
             capabilities = capabilities,
@@ -80,18 +81,6 @@ return {
                 tmpl = "html",
             },
         })
-        --
-        -- vim.lsp.config("csharp_ls", {
-        --     capabilities = capabilities,
-        --     cmd = function(dispatchers, config)
-        --         return vim.lsp.rpc.start({ 'csharp-ls', '--features', 'metadata-uris' }, dispatchers, {
-        --             cwd = config.cmd_cwd or config.root_dir,
-        --             env = config.cmd_env,
-        --             detached = config.detached,
-        --         })
-        --     end,
-        -- });
-        -- vim.lsp.enable("csharp_ls")
 
         vim.lsp.config("lua_ls", {
             settings = {
