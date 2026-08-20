@@ -1,68 +1,116 @@
 return {
-    "saghen/blink.cmp",
-    -- commit = "cfe100ccac24b0a622d7b9f04aa8c9f3e7624a16",
-    dependencies = {
-        "saghen/blink.lib",
-        "rafamadriz/friendly-snippets",
-    },
-    build = function()
-        require("blink.cmp").build():pwait()
-    end,
-
-    opts = {
-        keymap = { 
-            preset = "default",
-            [ "<Enter>" ] = { "select_and_accept", "fallback" },
-            ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
-            ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+    {
+        "saghen/blink.cmp",
+        dependencies = {
+            "saghen/blink.lib",
+            "rafamadriz/friendly-snippets",
         },
+        build = function()
+            require("blink.cmp").build():pwait()
+        end,
 
-        appearance = {
-            use_nvim_cmp_as_default = false,
-            nerd_font_variant = "mono"
+        opts = {
+            keymap = {
+                preset = "default",
+                [ "<Enter>" ] = { "select_and_accept", "fallback" },
+                ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+                ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+            },
+
+            appearance = {
+                use_nvim_cmp_as_default = false,
+                nerd_font_variant = "mono"
+            },
+
+            completion = {
+                keyword = { range = 'full' },
+                documentation = { auto_show = true },
+                ghost_text = { enabled = false, },
+                trigger = {
+                    show_on_insert_on_trigger_character = true,
+                    show_on_x_blocked_trigger_characters = {
+                        "'", '"', '(', '{', '['
+                    },
+                },
+            },
+
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+                min_keyword_length = 0,
+                providers = {
+                    lsp = {
+                        min_keyword_length = 0,
+                        score_offset = 4,
+                    },
+                    path = {
+                        min_keyword_length = 3,
+                        score_offset = 3,
+                    },
+                    buffer = {
+                        min_keyword_length = 5,
+                        score_offset = 2,
+                    },
+                    snippets = {
+                        min_keyword_length = 2,
+                        score_offset = 1,
+                    },
+                },
+            },
+
+            fuzzy = { implementation = "rust" }
         },
-
-        completion = { documentation = { auto_show = false } },
-
-        sources = { default = { "lsp", "path", "snippets", "buffer" } },
-
-        fuzzy = { implementation = "rust" }
     },
+
+    {
+        'saghen/blink.pairs',
+        dependencies = 'saghen/blink.lib',
+        version = '*',
+
+        build = function() require('blink.pairs').build():pwait(60000) end,
+
+        opts = {
+            mappings = {
+                -- you can call require("blink.pairs.mappings").enable()
+                -- and require("blink.pairs.mappings").disable()
+                -- to enable/disable mappings at runtime
+                enabled = true,
+                cmdline = true,
+                -- or disable with `vim.g.pairs = false` (global) and `vim.b.pairs = false` (per-buffer)
+                -- and/or with `vim.g.blink_pairs = false` and `vim.b.blink_pairs = false`
+                disabled_filetypes = {},
+                wrap = {
+                    -- move closing pair via motion
+                    ['<C-b>'] = 'motion',
+                    -- move opening pair via motion
+                    ['<C-S-b>'] = 'motion_reverse',
+                    -- set to 'treesitter' or 'treesitter_reverse' to use treesitter instead of motions
+                    -- set to nil, '' or false to disable the mapping
+                    -- normal_mode = {} <- for normal mode mappings, only supports 'motion' and 'motion_reverse'
+                },
+                -- see the defaults:
+                -- https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#L52
+                pairs = {},
+            },
+            highlights = {
+                enabled = true,
+                -- requires require('vim._core.ui2').enable({}), otherwise has no effect
+                cmdline = true,
+                -- set to { 'BlinkPairs' } to disable rainbow highlighting
+                groups = { 'BlinkPairsOrange', 'BlinkPairsPurple', 'BlinkPairsBlue' },
+                unmatched_group = 'BlinkPairsUnmatched',
+
+                -- highlights matching pairs under the cursor
+                matchparen = {
+                    enabled = true,
+                    -- known issue where typing won't update matchparen highlight, disabled by default
+                    cmdline = false,
+                    -- also include pairs not on top of the cursor, but surrounding the cursor
+                    include_surrounding = false,
+                    group = 'BlinkPairsMatchParen',
+                    priority = 250,
+                },
+            },
+            debug = false,
+        }
+    }
 }
-
--- return {
---     "saghen/blink.cmp",
---     -- version = "1.*",
---     dependencies = {
---         "saghen/blink.lib",
---         "rafamadriz/friendly-snippets",
---     },
---
---     -- build = function()
---     --     require("blink.cmp").build():pwait()
---     -- end,
---
---     opts = {
---         keymap = {
---             preset = "default",
---             [ "<Enter>" ] = { "select_and_accept", "fallback" },
---             ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
---             ["<C-j>"] = { "select_next", "fallback_to_mappings" },
---         },
---
---         appearance = {
---             use_nvim_cmp_as_default = false,
---             nerd_font_variant = "mono"
---         },
---         completion = { 
---             list = { selection = { preselect = true } },
---             documentation = { auto_show = true },
---         },
---         sources = {
---             default = { "lsp", "path", "snippets", "buffer" },
---             -- providers = { lsp = { timeout_ms = 500, } }
---         },
---         fuzzy = { implementation = "rust" },
---     },
---     opts_extend = { "sources.default" }
--- }
