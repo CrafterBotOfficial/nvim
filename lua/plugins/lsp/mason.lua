@@ -22,6 +22,8 @@ return {
                     -- "htmx", -- must be installed manually with cargo
                     "lua_ls",
                     "qmlls",
+                    "gopls",
+                    "templ",
                     -- "rzls", -- c# .razor support
                 },
                 automatic_enable = {

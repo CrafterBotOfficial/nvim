@@ -9,6 +9,11 @@ return {
             documentationFormat = { "markdown", "plaintext" },
         }
 
+        vim.lsp.config("zls", {
+            capabilities = capabilities,
+        })
+        vim.lsp.enable("zls")
+
         vim.lsp.enable("roslyn_ls")
         vim.lsp.enable("roslyn")
 
