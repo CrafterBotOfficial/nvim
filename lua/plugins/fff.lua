@@ -1,7 +1,7 @@
 return {
     {
         "dmtrKovalenko/fff.nvim",
-        version = "0.8.*",
+        version = "0.10.*",
         lazy = false,
         build = function()
             require("fff.download").download_or_build_binary()
@@ -23,7 +23,6 @@ return {
 
     {
         "https://github.com/madmaxieee/fff-snacks.nvim",
-        commit = "ad0cb07e06fc097910ab965f0216f1e4ae0315da", -- rollback to show entries on open instead of after type
         dependencies = {
             "dmtrKovalenko/fff.nvim",
             "folke/snacks.nvim",

@@ -9,6 +9,18 @@ return {
             documentationFormat = { "markdown", "plaintext" },
         }
 
+        vim.lsp.config('vtsls', {
+            settings = {
+                vtsls = {
+                    tsserver = {
+                        globalPlugins = { },
+                    },
+                },
+            },
+            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'html', 'zmpl' },
+        })
+        vim.lsp.enable('vtsls')
+
         vim.lsp.config("zls", {
             capabilities = capabilities,
         })
@@ -84,6 +96,7 @@ return {
         vim.filetype.add({
             extension = {
                 tmpl = "html",
+                zmpl = "html",
             },
         })
 
