@@ -9,3 +9,4 @@ require "lazy" .setup {
 require "nvim-settings"
 require "keymaps"
 require "autocmd"
+require "packages"

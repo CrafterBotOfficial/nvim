@@ -11,8 +11,7 @@ function map(key, command)
 end
 
 function in_git_folder()
-    local cwd = vim.fn.getcwd()
-    local sep = package.config:sub(1,1)
-    return vim.fn.isdirectory(cwd .. sep .. ".git") == 1
+    local cmd = vim.system({ "git", "status" }, { text = false }):wait()
+    return cmd.code == 0
 end
 
