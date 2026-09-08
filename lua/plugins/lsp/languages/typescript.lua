@@ -1,5 +1,5 @@
 return {
-    "https://github.com/yioneko/nvim-vtsls",
-    config = function ()
-    end,
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  opts = {},
 }

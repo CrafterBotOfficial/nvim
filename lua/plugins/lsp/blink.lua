@@ -23,13 +23,13 @@ return {
             },
 
             completion = {
-                keyword = { range = 'full' },
+                keyword = { range = "full" },
                 documentation = { auto_show = true },
                 ghost_text = { enabled = false, },
                 trigger = {
                     show_on_insert_on_trigger_character = true,
                     show_on_x_blocked_trigger_characters = {
-                        "'", '"', '(', '{', '['
+                        "'", '"', "(", "{", "["
                     },
                 },
             },
@@ -62,11 +62,11 @@ return {
     },
 
     {
-        'saghen/blink.pairs',
-        dependencies = 'saghen/blink.lib',
-        version = '*',
+        "saghen/blink.pairs",
+        dependencies = "saghen/blink.lib",
+        version = "*",
 
-        build = function() require('blink.pairs').build():pwait(60000) end,
+        build = function() require("blink.pairs").build():pwait(60000) end,
 
         opts = {
             mappings = {
@@ -80,12 +80,12 @@ return {
                 disabled_filetypes = {},
                 wrap = {
                     -- move closing pair via motion
-                    ['<C-b>'] = 'motion',
+                    ["<C-b>"] = "motion",
                     -- move opening pair via motion
-                    ['<C-S-b>'] = 'motion_reverse',
-                    -- set to 'treesitter' or 'treesitter_reverse' to use treesitter instead of motions
-                    -- set to nil, '' or false to disable the mapping
-                    -- normal_mode = {} <- for normal mode mappings, only supports 'motion' and 'motion_reverse'
+                    ["<C-S-b>"] = "motion_reverse",
+                    -- set to "treesitter" or "treesitter_reverse" to use treesitter instead of motions
+                    -- set to nil, "" or false to disable the mapping
+                    -- normal_mode = {} <- for normal mode mappings, only supports "motion" and "motion_reverse"
                 },
                 -- see the defaults:
                 -- https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#L52
@@ -93,20 +93,20 @@ return {
             },
             highlights = {
                 enabled = true,
-                -- requires require('vim._core.ui2').enable({}), otherwise has no effect
+                -- requires require("vim._core.ui2").enable({}), otherwise has no effect
                 cmdline = true,
-                -- set to { 'BlinkPairs' } to disable rainbow highlighting
-                groups = { 'BlinkPairsOrange', 'BlinkPairsPurple', 'BlinkPairsBlue' },
-                unmatched_group = 'BlinkPairsUnmatched',
+                -- set to { "BlinkPairs" } to disable rainbow highlighting
+                groups = { "BlinkPairsOrange", "BlinkPairsPurple", "BlinkPairsBlue" },
+                unmatched_group = "BlinkPairsUnmatched",
 
                 -- highlights matching pairs under the cursor
                 matchparen = {
                     enabled = true,
-                    -- known issue where typing won't update matchparen highlight, disabled by default
+                    -- known issue where typing won"t update matchparen highlight, disabled by default
                     cmdline = false,
                     -- also include pairs not on top of the cursor, but surrounding the cursor
                     include_surrounding = false,
-                    group = 'BlinkPairsMatchParen',
+                    group = "BlinkPairsMatchParen",
                     priority = 250,
                 },
             },

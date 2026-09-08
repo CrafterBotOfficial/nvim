@@ -10,9 +10,10 @@ map_mode("i", "jj", "<Esc>")
 -- Navigation
 -- ----------
 
--- Fuzzy Finding
-local snacks = require 'snacks'
 map("<C-n>", ":NvimTreeToggle<CR>")
+
+-- Fuzzy Finding
+local snacks = require "snacks"
 map("<leader>ff", function ()
     if in_git_folder() then
         require"fff-snacks".find_files()
