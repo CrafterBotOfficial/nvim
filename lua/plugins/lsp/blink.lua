@@ -23,14 +23,15 @@ return {
             },
 
             completion = {
-                keyword = { range = "full" },
+                keyword = { range = "prefix" },
+                -- keyword = { range = "full" },
                 documentation = { auto_show = true },
                 ghost_text = { enabled = false, },
                 trigger = {
+                    show_on_trigger_character = true,
+                    show_on_insert = true,
                     show_on_insert_on_trigger_character = true,
-                    show_on_x_blocked_trigger_characters = {
-                        "'", '"', "(", "{", "["
-                    },
+                    show_on_x_blocked_trigger_characters = { "'", '"', "(", "{", "[" },
                 },
             },
 

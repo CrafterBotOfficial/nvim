@@ -12,7 +12,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 
--- prevents coping on paste
+-- prevents copying on paste
 vim.keymap.set("x", "p", '"_dP"', { noremap = true })
 
 vim.opt.wrap = true

@@ -9,7 +9,6 @@ return {
             documentationFormat = { "markdown", "plaintext" },
         }
 
-
         vim.lsp.config("clangd", {
             cmd = { "clangd", "--query-driver=/usr/bin/g++,/usr/bin/clang++" }
         })
@@ -63,10 +62,11 @@ return {
         })
 
         vim.lsp.config("qmlls", {
-            cmd = { "qmlls", "-I", "/lib/qt6/qml" },
+            -- cmd = { "qmlls", "-I", "/lib/qt6/qml" },
             filetypes = { "qml" },
-            root_dir = require"lspconfig".util.root_pattern(".git", ".qmlls.json"),
+            root_markers = { ".qmlls.ini" },
         })
+        vim.lsp.enable("qmlls")
 
         vim.env.GORILLATAG_PATH = "/home/crafterbot/.local/share/Steam/steamapps/common/Gorilla Tag/"
     end,
